@@ -35,7 +35,8 @@ public class Establecimiento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "establecimiento_id")
+	private Long establecimientoId;
 
 	@NotEmpty
 	private String nombre;
@@ -77,14 +78,14 @@ public class Establecimiento implements Serializable {
 	 * @return the id
 	 */
 	public Long getId() {
-		return id;
+		return establecimientoId;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
-		this.id = id;
+		this.establecimientoId = id;
 	}
 
 	/**

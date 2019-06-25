@@ -26,9 +26,9 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author gian
  *
  */
-@Table(name = "fotos_por_establecimientos")
 @Entity
-public class FotoEstablecimiento implements Serializable {
+@Table(name = "fotos_municipios_usuarios")
+public class FotoMunicipioUsuario implements Serializable {
 
 	/**
 	 * 
@@ -37,8 +37,7 @@ public class FotoEstablecimiento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "foto_establecimiento_id")
-	private Long fotoEstablecimientoId;
+	private Long foto_id;
 
 	@NotEmpty
 	private String fotoUrl;
@@ -48,14 +47,21 @@ public class FotoEstablecimiento implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd-hh-mm-ss")
 	private Date createAt;
 
+	@Column(nullable = true)
+	private String descripcion;
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "establecimiento")
-	private Establecimiento establecimiento;
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "municipio")
+	private Municipio municipio;
 
 	/**
 	 * 
 	 */
-	public FotoEstablecimiento() {
+	public FotoMunicipioUsuario() {
 	}
 
 	@PrePersist
@@ -64,17 +70,17 @@ public class FotoEstablecimiento implements Serializable {
 	}
 
 	/**
-	 * @return the id
+	 * @return the foto_id
 	 */
-	public Long getId() {
-		return fotoEstablecimientoId;
+	public Long getFoto_id() {
+		return foto_id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param foto_id the foto_id to set
 	 */
-	public void setId(Long id) {
-		this.fotoEstablecimientoId = id;
+	public void setFoto_id(Long foto_id) {
+		this.foto_id = foto_id;
 	}
 
 	/**
@@ -106,17 +112,45 @@ public class FotoEstablecimiento implements Serializable {
 	}
 
 	/**
-	 * @return the establecimiento
+	 * @return the descripcion
 	 */
-	public Establecimiento getEstablecimiento() {
-		return establecimiento;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
 	/**
-	 * @param establecimiento the establecimiento to set
+	 * @param descripcion the descripcion to set
 	 */
-	public void setEstablecimiento(Establecimiento establecimiento) {
-		this.establecimiento = establecimiento;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @return the usuario
+	 */
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario the usuario to set
+	 */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	/**
+	 * @return the municipio
+	 */
+	public Municipio getMunicipio() {
+		return municipio;
+	}
+
+	/**
+	 * @param municipio the municipio to set
+	 */
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
 	}
 
 	/**

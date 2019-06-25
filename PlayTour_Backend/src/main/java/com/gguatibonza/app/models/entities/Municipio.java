@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -35,7 +36,8 @@ public class Municipio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "municipio_id")
+	private Long municipioId;
 
 	@NotEmpty
 	private String nombre;
@@ -62,28 +64,40 @@ public class Municipio implements Serializable {
 	@JoinColumn(name = "departamento")
 	private Departamento departamento;
 
-	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
 	private List<Establecimiento> establecimientos;
+
+	@ManyToMany(mappedBy = "municipios", fetch = FetchType.LAZY)
+	private List<Usuario> usuarios;
+
+	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+	private List<FotoMunicipioUsuario> fotos;
+
+	@OneToMany(mappedBy = "municipio", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
+	private List<Ruta> rutas;
 
 	/**
 	 * 
 	 */
 	public Municipio() {
 		this.establecimientos = new ArrayList<Establecimiento>();
+		this.usuarios = new ArrayList<Usuario>();
+		this.fotos = new ArrayList<FotoMunicipioUsuario>();
+		this.rutas = new ArrayList<Ruta>();
 	}
 
 	/**
 	 * @return the id
 	 */
 	public Long getId() {
-		return id;
+		return municipioId;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
-		this.id = id;
+		this.municipioId = id;
 	}
 
 	/**
@@ -221,6 +235,18 @@ public class Municipio implements Serializable {
 
 	public void addEstablecimientos(Establecimiento establecimiento) {
 		this.establecimientos.add(establecimiento);
+	}
+
+	public void addUsuarios(Usuario item) {
+		this.usuarios.add(item);
+	}
+
+	public void addFotos(FotoMunicipioUsuario item) {
+		this.fotos.add(item);
+	}
+
+	public void addRutas(Ruta item) {
+		this.rutas.add(item);
 	}
 
 }
