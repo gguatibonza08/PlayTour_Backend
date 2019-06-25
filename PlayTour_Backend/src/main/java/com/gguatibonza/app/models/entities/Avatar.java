@@ -7,9 +7,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -17,9 +20,10 @@ import javax.validation.constraints.NotEmpty;
  * @author gian
  *
  */
-@Table(name = "tipo_Establecimiento")
+@Table(name = "avatares")
 @Entity
-public class TipoEstablecimiento implements Serializable {
+public class Avatar implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -27,33 +31,37 @@ public class TipoEstablecimiento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "tipo_establecimiento_id")
-	private Long TipoEstablecimientoId;
+	@Column(name = "avatar_id")
+	private Long avatarId;
 
 	@NotEmpty
 	private String nombre;
 
 	@NotEmpty
-	private String descripcion;
+	private String foto;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ruta")
+	private Ruta ruta;
 
 	/**
 	 * 
 	 */
-	public TipoEstablecimiento() {
+	public Avatar() {
 	}
 
 	/**
-	 * @return the id
+	 * @return the avatarId
 	 */
-	public Long getId() {
-		return TipoEstablecimientoId;
+	public Long getAvatarId() {
+		return avatarId;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param avatarId the avatarId to set
 	 */
-	public void setId(Long id) {
-		this.TipoEstablecimientoId = id;
+	public void setAvatarId(Long avatarId) {
+		this.avatarId = avatarId;
 	}
 
 	/**
@@ -71,17 +79,31 @@ public class TipoEstablecimiento implements Serializable {
 	}
 
 	/**
-	 * @return the descripcion
+	 * @return the foto
 	 */
-	public String getDescripcion() {
-		return descripcion;
+	public String getFoto() {
+		return foto;
 	}
 
 	/**
-	 * @param descripcion the descripcion to set
+	 * @param foto the foto to set
 	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	/**
+	 * @return the ruta
+	 */
+	public Ruta getRuta() {
+		return ruta;
+	}
+
+	/**
+	 * @param ruta the ruta to set
+	 */
+	public void setRuta(Ruta ruta) {
+		this.ruta = ruta;
 	}
 
 	/**

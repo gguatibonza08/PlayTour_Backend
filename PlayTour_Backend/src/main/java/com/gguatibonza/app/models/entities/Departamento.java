@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,8 @@ public class Departamento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "departamento_id")
+	private Long departamentoId;
 
 	@NotEmpty
 	private String nombre;
@@ -66,14 +68,14 @@ public class Departamento implements Serializable {
 	 * @return the id
 	 */
 	public Long getId() {
-		return id;
+		return departamentoId;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
-		this.id = id;
+		this.departamentoId = id;
 	}
 
 	/**
