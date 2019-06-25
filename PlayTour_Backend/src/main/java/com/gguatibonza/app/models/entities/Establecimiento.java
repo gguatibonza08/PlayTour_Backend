@@ -4,7 +4,10 @@
 package com.gguatibonza.app.models.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -36,18 +40,17 @@ public class Establecimiento implements Serializable {
 	@NotEmpty
 	private String nombre;
 
-	@NotEmpty
+	@Column(name = "direccion", nullable = true)
 	private String direccion;
 
-	@NotEmpty
+	@Column(name = "telefono", nullable = true)
 	private String telefono;
 
-	@NotEmpty
-	@Column(name = "numero_wpp")
+	@Column(name = "numero_wpp", nullable = true)
 	private String numeroWpp;
 
-	@NotEmpty
-	private String foto;
+	@OneToMany(mappedBy = "establecimiento", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<FotoEstablecimiento> fotos;
 
 	@NotEmpty
 	private String latitud;
@@ -67,6 +70,7 @@ public class Establecimiento implements Serializable {
 	 * 
 	 */
 	public Establecimiento() {
+		this.fotos = new ArrayList<FotoEstablecimiento>();
 	}
 
 	/**
@@ -140,20 +144,6 @@ public class Establecimiento implements Serializable {
 	}
 
 	/**
-	 * @return the foto
-	 */
-	public String getFoto() {
-		return foto;
-	}
-
-	/**
-	 * @param foto the foto to set
-	 */
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
-	/**
 	 * @return the latitud
 	 */
 	public String getLatitud() {
@@ -214,6 +204,24 @@ public class Establecimiento implements Serializable {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	/**
+	 * @return the fotos
+	 */
+	public List<FotoEstablecimiento> getFotos() {
+		return fotos;
+	}
+
+	/**
+	 * @param fotos the fotos to set
+	 */
+	public void setFotos(List<FotoEstablecimiento> fotos) {
+		this.fotos = fotos;
+	}
+
+	public void addFotos(FotoEstablecimiento fotoEstablecimiento) {
+		this.fotos.add(fotoEstablecimiento);
 	}
 
 }

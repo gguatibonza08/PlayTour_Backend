@@ -219,7 +219,7 @@ public class Municipio implements Serializable {
 		this.establecimientos = establecimientos;
 	}
 
-	public void addItemFactura(Establecimiento establecimiento) {
+	public void addEstablecimientos(Establecimiento establecimiento) {
 		this.establecimientos.add(establecimiento);
 	}
 
