@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author gian
  *
@@ -40,6 +42,7 @@ public class Avatar implements Serializable {
 	@NotEmpty
 	private String foto;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ruta")
 	private Ruta ruta;

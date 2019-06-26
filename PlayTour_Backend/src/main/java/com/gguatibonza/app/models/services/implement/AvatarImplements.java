@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.data.domain.Sort;
 
 import com.gguatibonza.app.models.daos.IAvatarDao;
 import com.gguatibonza.app.models.entities.Avatar;
@@ -29,28 +28,28 @@ public class AvatarImplements implements IAvatarService {
 	@Transactional(readOnly = true)
 	public List<Avatar> findAll() {
 		// TODO Auto-generated method stub
-		return avatarDao.findAll(Sort.by("ruta").ascending());
+		return avatarDao.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<Avatar> findByRuta(Ruta ruta) {
 		// TODO Auto-generated method stub
-		return null;
+		return avatarDao.findByRuta(ruta);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Avatar findById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return avatarDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public boolean existById(Long id) {
 		// TODO Auto-generated method stub
-		return false;
+		return avatarDao.existsById(id);
 	}
 
 }

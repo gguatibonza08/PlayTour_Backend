@@ -4,10 +4,7 @@
 package com.gguatibonza.app.models.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -51,14 +47,11 @@ public class Ruta implements Serializable {
 	@JoinColumn(name = "municipio")
 	private Municipio municipio;
 
-	@OneToMany(mappedBy = "ruta", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-	private List<Avatar> avatares;
-
 	/**
 	 * 
 	 */
 	public Ruta() {
-		this.avatares = new ArrayList<Avatar>();
+
 	}
 
 	/**
@@ -132,28 +125,10 @@ public class Ruta implements Serializable {
 	}
 
 	/**
-	 * @return the avatares
-	 */
-	public List<Avatar> getAvatares() {
-		return avatares;
-	}
-
-	/**
-	 * @param avatares the avatares to set
-	 */
-	public void setAvatares(List<Avatar> avatares) {
-		this.avatares = avatares;
-	}
-
-	/**
 	 * @return the serialversionuid
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	public void addAvatares(Avatar item) {
-		this.avatares.add(item);
 	}
 
 }
