@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,8 @@ public class Pais implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "pais_id")
+	private Long paisId;
 
 	@NotEmpty
 	private String nombre;
@@ -60,14 +62,14 @@ public class Pais implements Serializable {
 	 * @return the id
 	 */
 	public Long getId() {
-		return id;
+		return paisId;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
-		this.id = id;
+		this.paisId = id;
 	}
 
 	/**
