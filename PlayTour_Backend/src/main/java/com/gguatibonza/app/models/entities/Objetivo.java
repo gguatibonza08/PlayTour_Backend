@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -49,15 +47,18 @@ public class Objetivo implements Serializable {
 	@ManyToMany(mappedBy = "objetivos", fetch = FetchType.LAZY)
 	private List<Logro> logros;
 
-	@OneToMany(mappedBy = "objetivo", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-	private List<UsuarioObjetivo> usuariosObjetivo;
+	/*
+	 * @OneToMany(mappedBy = "objetivo", fetch = FetchType.LAZY, cascade = {
+	 * CascadeType.ALL }, orphanRemoval = true) private List<UsuarioObjetivo>
+	 * usuariosObjetivo;
+	 */
 
 	/**
 	 * 
 	 */
 	public Objetivo() {
 		this.logros = new ArrayList<Logro>();
-		this.usuariosObjetivo = new ArrayList<UsuarioObjetivo>();
+		// this.usuariosObjetivo = new ArrayList<UsuarioObjetivo>();
 	}
 
 	/**
@@ -133,16 +134,18 @@ public class Objetivo implements Serializable {
 	/**
 	 * @return the usuariosObjetivo
 	 */
-	public List<UsuarioObjetivo> getUsuariosObjetivo() {
-		return usuariosObjetivo;
-	}
+	/*
+	 * public List<UsuarioObjetivo> getUsuariosObjetivo() { return usuariosObjetivo;
+	 * }
+	 */
 
 	/**
 	 * @param usuariosObjetivo the usuariosObjetivo to set
 	 */
-	public void setUsuariosObjetivo(List<UsuarioObjetivo> usuariosObjetivo) {
-		this.usuariosObjetivo = usuariosObjetivo;
-	}
+	/*
+	 * public void setUsuariosObjetivo(List<UsuarioObjetivo> usuariosObjetivo) {
+	 * this.usuariosObjetivo = usuariosObjetivo; }
+	 */
 
 	/**
 	 * @return the serialversionuid
@@ -155,8 +158,9 @@ public class Objetivo implements Serializable {
 		this.logros.add(item);
 	}
 
-	public void addUsuarioObjetivo(UsuarioObjetivo item) {
-		this.usuariosObjetivo.add(item);
-	}
+	/*
+	 * public void addUsuarioObjetivo(UsuarioObjetivo item) {
+	 * this.usuariosObjetivo.add(item); }
+	 */
 
 }
