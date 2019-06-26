@@ -21,4 +21,5 @@ public interface IFotoEstablecimientoService {
 	public void eliminarFoto(Long id);
 
 	public List<FotoEstablecimiento> findAllByEstablecimeinto(Establecimiento establecimiento);
+
 }
