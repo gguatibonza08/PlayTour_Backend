@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -60,15 +58,18 @@ public class Logro implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY)
 	private List<Objetivo> objetivos;
 
-	@OneToMany(mappedBy = "logro", fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true)
-	private List<UsuarioLogro> usuariosLogro;
+	/*
+	 * @OneToMany(mappedBy = "logro", fetch = FetchType.LAZY, cascade = {
+	 * CascadeType.ALL }, orphanRemoval = true) private List<UsuarioLogro>
+	 * usuariosLogro;
+	 */
 
 	/**
 	 * 
 	 */
 	public Logro() {
 		this.objetivos = new ArrayList<Objetivo>();
-		this.usuariosLogro = new ArrayList<UsuarioLogro>();
+		// this.usuariosLogro = new ArrayList<UsuarioLogro>();
 	}
 
 	/**
@@ -158,16 +159,17 @@ public class Logro implements Serializable {
 	/**
 	 * @return the usuariosLogro
 	 */
-	public List<UsuarioLogro> getUsuariosLogro() {
-		return usuariosLogro;
-	}
+	/*
+	 * public List<UsuarioLogro> getUsuariosLogro() { return usuariosLogro; }
+	 */
 
 	/**
 	 * @param usuariosLogro the usuariosLogro to set
 	 */
-	public void setUsuariosLogro(List<UsuarioLogro> usuariosLogro) {
-		this.usuariosLogro = usuariosLogro;
-	}
+	/*
+	 * public void setUsuariosLogro(List<UsuarioLogro> usuariosLogro) {
+	 * this.usuariosLogro = usuariosLogro; }
+	 */
 
 	/**
 	 * @return the serialversionuid
@@ -180,8 +182,8 @@ public class Logro implements Serializable {
 		this.objetivos.add(item);
 	}
 
-	public void addUsuarios(UsuarioLogro item) {
-		this.usuariosLogro.add(item);
-	}
+	/*
+	 * public void addUsuarios(UsuarioLogro item) { this.usuariosLogro.add(item); }
+	 */
 
 }
